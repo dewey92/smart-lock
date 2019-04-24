@@ -109,8 +109,14 @@ const App: React.FC<AppProps> = ({ location, loginAs, classes, ...props }) => {
 
       <div className="main-content">
         <Route path="/rooms" component={RoomsList} />
-        {loginAs === null && <Route path="/users" component={UsersList} />}
-        {loginAs !== null && <Route path="/access" component={RoomsAccess} />}
+        <Route
+          path="/users"
+          render={() => (loginAs === null ? <UsersList /> : <Redirect to="/access" />)}
+        />
+        <Route
+          path="/access"
+          render={() => (loginAs !== null ? <RoomsAccess /> : <Redirect to="/rooms" />)}
+        />
         <Route path="/logs" component={Logs} />
         <Route exact path="/" render={() => <Redirect to="/rooms" />} />
       </div>
