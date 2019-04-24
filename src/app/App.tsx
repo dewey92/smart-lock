@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Route, Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import { initApp } from './appReducer';
 import {
@@ -19,7 +19,6 @@ import {
   ListItemText,
 } from '@material-ui/core';
 import { compose } from 'redux';
-import { Route, Redirect, withRouter, RouteComponentProps } from 'react-router';
 import { RoomsList, UsersList } from '../management';
 import { LoginAsDialog, RoomsAccess, Logs, getLoginAs, logout } from '../access';
 
@@ -109,11 +108,11 @@ const App: React.FC<AppProps> = ({ location, loginAs, classes, ...props }) => {
       <LoginAsDialog isOpen={isLoginDialogOpen} onClose={() => setLoginDialogOpen(false)} />
 
       <div className="main-content">
-        <Redirect from="/" to="/rooms" />
         <Route path="/rooms" component={RoomsList} />
         {loginAs === null && <Route path="/users" component={UsersList} />}
         {loginAs !== null && <Route path="/access" component={RoomsAccess} />}
         <Route path="/logs" component={Logs} />
+        <Route exact path="/" render={() => <Redirect to="/rooms" />} />
       </div>
     </div>
   );
