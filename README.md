@@ -1,3 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/636bf9d9-7204-498d-ac56-2136e2afafd9/deploy-status)](https://app.netlify.com/sites/dewey-smart-lock/deploys)
+
+For DEMO, please visit: https://dewey-smart-lock.netlify.com/
+
 # Smart Lock
 
 Basic requirements are:
